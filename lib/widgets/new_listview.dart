@@ -10,7 +10,7 @@ class NewsListview extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(childCount: 10, (context, index) {
-        return NewsCard();
+        return const NewsCard();
       }),
     );
   }
