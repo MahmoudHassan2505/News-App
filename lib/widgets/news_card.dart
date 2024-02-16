@@ -14,7 +14,9 @@ class NewsCard extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                article.img == null
+                    ? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'
+                    : article.img!,
                 height: 250,
                 fit: BoxFit.fill,
               )),
@@ -25,10 +27,12 @@ class NewsCard extends StatelessWidget {
             article.title,
             style: const TextStyle(
                 fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
+            maxLines: 2,
           ),
           Text(
             article.subTitle ?? 'Sadly, There is no Details',
             style: const TextStyle(fontSize: 16, color: Colors.grey),
+            maxLines: 2,
           )
         ],
       ),
