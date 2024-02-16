@@ -6,9 +6,8 @@ import 'package:news_app/services/news_services.dart';
 import 'package:news_app/widgets/new_listview.dart';
 
 class NewsListViewBuilder extends StatefulWidget {
-  const NewsListViewBuilder({
-    super.key,
-  });
+  final String categoty;
+  const NewsListViewBuilder({super.key, required this.categoty});
 
   @override
   State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
@@ -20,7 +19,8 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    future = NewsServices(dio: Dio()).getTopHeadlinesNews();
+    future =
+        NewsServices(dio: Dio()).getCategoryNews(category: widget.categoty);
   }
 
   @override
@@ -35,8 +35,10 @@ class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
                       child: Text("There is an error"),
                     )
                   : const SliverToBoxAdapter(
-                      child: LoadingIndicator(
-                          indicatorType: Indicator.semiCircleSpin),
+                      child: Center(
+                        child: LoadingIndicator(
+                            indicatorType: Indicator.semiCircleSpin),
+                      ),
                     );
         });
   }

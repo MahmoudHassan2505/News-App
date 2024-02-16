@@ -38,7 +38,9 @@ class HomePage extends StatelessWidget {
               const SliverToBoxAdapter(
                 child: SizedBox(height: 10),
               ),
-              const NewsListViewBuilder(),
+              const NewsListViewBuilder(
+                categoty: 'top',
+              ),
             ],
           )),
     );
