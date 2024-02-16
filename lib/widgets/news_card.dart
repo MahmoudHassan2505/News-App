@@ -28,11 +28,13 @@ class NewsCard extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
             maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           Text(
             article.subTitle ?? 'Sadly, There is no Details',
             style: const TextStyle(fontSize: 16, color: Colors.grey),
             maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           )
         ],
       ),
