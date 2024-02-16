@@ -1,17 +1,36 @@
 import 'package:dio/dio.dart';
+import 'package:news_app/models/article_model.dart';
 
 class NewsServices {
   final dio;
 
   NewsServices({required this.dio});
 
-  void getTopHeadlinesNews() async {
-    final response = await dio.get(
-        'https://newsapi.org/v2/top-headlines?country=eg&apiKey=fa4aca5d23304347a8d898684f8a2143');
+  Future<List<ArticleModel>> getTopHeadlinesNews() async {
+    final Response response = await dio.get(
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=fa4aca5d23304347a8d898684f8a2143');
+
+    Map<String, dynamic> jsonData = response.data;
+
+    List<dynamic> newsList = jsonData['articles'];
+    List<ArticleModel> articles = [];
+    for (var article in newsList) {
+      articles.add(ArticleModel.jsonToObject(article));
+    }
+    return articles;
   }
 
-  void getCategoryNews({required String category}) async {
-    final response = await dio.get(
-        'https://newsapi.org/v2/top-headlines/sources?country=egcategory=${category}apiKey=API_KEY');
+  Future<List<ArticleModel>> getCategoryNews({required String category}) async {
+    final Response response = await dio.get(
+        'https://newsapi.org/v2/top-headlines/sources?apiKey=fa4aca5d23304347a8d898684f8a2143&category=$category');
+
+    Map<String, dynamic> jsonData = response.data;
+
+    List<dynamic> newsList = jsonData['articles'];
+    List<ArticleModel> articles = [];
+    for (var article in newsList) {
+      articles.add(ArticleModel.jsonToObject(article));
+    }
+    return articles;
   }
 }

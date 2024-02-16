@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/article_model.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({super.key});
+  final ArticleModel article;
+  const NewsCard({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -10,21 +12,23 @@ class NewsCard extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-                'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630'),
-          ),
-          SizedBox(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                height: 250,
+                fit: BoxFit.fill,
+              )),
+          const SizedBox(
             height: 5,
           ),
           Text(
-            "Tree in the natural place",
-            style: TextStyle(
+            article.title,
+            style: const TextStyle(
                 fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           Text(
-            'details of the newws',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            article.subTitle ?? 'Sadly, There is no Details',
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
           )
         ],
       ),
